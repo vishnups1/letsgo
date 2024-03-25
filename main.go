@@ -21,13 +21,13 @@ func main() {
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, string("let's go!"))
+	fmt.Fprintf(w, fmt.Sprintln("let's go!"))
 }
 
 func liveness(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, string("alive!"))
+	fmt.Fprintf(w, fmt.Sprintln("alive!"))
 }
 
 func readiness(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, string("ready!"))
+	fmt.Fprintf(w, fmt.Sprintln("ready!"))
 }

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: letsgo
+  name: letsgo
+  namespace: default
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 7
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: letsgo
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: letsgo
+        env: prod
+    spec:
+      containers:
+      - image: docker.io/vishnu930417/minikube:latest
+        imagePullPolicy: Always
+        name: letsgo
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
